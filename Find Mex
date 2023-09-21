@@ -1,0 +1,38 @@
+Question Link:- https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/find-mex-62916c25/
+
+# Solution:-
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Testcases {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt(); // Size of the array
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt(); // Input array elements
+        }
+
+        int[] mexArray = new int[n]; // Array to store the result
+
+        Set<Integer> seen = new HashSet<>(); // To keep track of elements seen so far
+        int mex = 0; // Initialize mex to 0
+
+        for (int i = 0; i < n; i++) {
+            seen.add(arr[i]); // Add the current element to the set
+            // Find the minimum element greater than or equal to mex that is not in the set
+            while (seen.contains(mex)) {
+                mex++;
+            }
+            mexArray[i] = mex; // Store the mex value for this index
+        }
+
+        // Print the result
+        for (int i = 0; i < n; i++) {
+            System.out.print(mexArray[i] + " ");
+        }
+    }
+}
